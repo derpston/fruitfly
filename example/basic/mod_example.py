@@ -10,10 +10,10 @@ class example(fruitfly.Module):
 
     @fruitfly.repeat(1)
     def onesecond(self):
-        self._logger.info("Sending an event")
+        self.logger.info("Sending an event")
         self.send_event("foo.omg", ['test'])
 
     @fruitfly.event('foo.*')
     def foohandler(self, event, payload):
-       self._logger.info("event handler for foo got %s, %s", event, repr(payload))
+       self.logger.info("event handler for foo got %s, %s", event, repr(payload))
 
