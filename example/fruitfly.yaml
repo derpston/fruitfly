@@ -1,0 +1,7 @@
+# Example Fruitfly config.
+logging:
+    level: debug
+    destination: stderr
+modules:
+    example:
+        foo: bar
