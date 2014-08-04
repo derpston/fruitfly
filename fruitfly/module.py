@@ -54,8 +54,8 @@ class Module(threading.Thread):
         
         self._parent_app = parent_app
         self._modname = modname
-        self._config = config
-        self._logger = logging.getLogger(self._modname)
+        self.config = config
+        self.logger = logging.getLogger(self._modname)
 
         self._eventqueue = queue.Queue(maxsize = 1000)
 
@@ -64,7 +64,7 @@ class Module(threading.Thread):
             try:
                 self.init()
             except Exception as ex:
-                self._logger.error("init crashed: %s (module disabled)", repr(ex))
+                self.logger.error("init crashed: %s (module disabled)", repr(ex))
                 return
         
         self.start()
@@ -94,7 +94,7 @@ class Module(threading.Thread):
                             try:
                                 handler(self, event, payload)
                             except Exception as ex:
-                                self._logger.error("%s handling %s event with payload '%s' crashed: %s", handler.__name__, event, payload, repr(ex))
+                                self.logger.error("%s handling %s event with payload '%s' crashed: %s", handler.__name__, event, payload, repr(ex))
 
                     continue
                 except queue.Empty:
@@ -115,7 +115,7 @@ class Module(threading.Thread):
                 if interval < default_crashpenalty:
                     crashpenalty = default_crashpenalty
 
-                self._logger.error("%s crashed: %s (next run delayed by %2.2fs)", func.__name__, repr(ex), crashpenalty)
+                self.logger.error("%s crashed: %s (next run delayed by %2.2fs)", func.__name__, repr(ex), crashpenalty)
 
             # Re-schedule it by putting it back on the heap.
             heapq.heappush(scheduled_functions[self._modname], (time.time() + interval + crashpenalty, (func, interval)))
@@ -123,5 +123,5 @@ class Module(threading.Thread):
     def send_event(self, event, payload = None):
         """Pass an event (with optional payload) up to the parent fruitfly
         instance so that it can be distributed to other modules."""
-        self._logger.debug("event: %s '%s'", event, repr(payload))
+        self.logger.debug("event: %s '%s'", event, repr(payload))
         self._parent_app.send_event(event, payload)
