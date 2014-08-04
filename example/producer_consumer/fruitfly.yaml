@@ -1,0 +1,5 @@
+# A simple YAML configuration file defining two modules.
+modules:
+  producer:
+    message: foo
+  consumer:
