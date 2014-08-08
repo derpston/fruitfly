@@ -91,8 +91,6 @@ The objective is to allow users to easily write robust systems that won't need a
 
 TODO
 ====
-* Setuptools packaging.
-* PyPI registration.
 * Tests.
 * Continuous integration.
 * Debian packaging with an init script.
