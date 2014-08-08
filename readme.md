@@ -1,3 +1,5 @@
+[![pypi](https://pypip.in/v/fruitfly/badge.svg?style=flat)](https://pypi.python.org/pypi/fruitfly)
+
 Fruitfly
 ========
 Python framework for minimalist, modular, event-driven embedded applications.
