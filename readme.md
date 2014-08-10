@@ -7,7 +7,7 @@ Python framework for minimalist, modular, event-driven embedded applications.
 
 Architecture
 ============
-Fruitfly is intended to be used in embedded systems where fault tolerance and low overheads are desirable.
+Fruitfly is intended to be used in embedded systems where fault tolerance and low overheads are desirable properties.
 
 The user is encouraged to create a series of small modules with clear responsibilities, and to pass events between these modules. A module can register to have several callbacks at varying intervals, and to be notified when another module sends an event matching a pattern.
 
@@ -26,7 +26,7 @@ Intended use
 ============
 It is hoped that Fruitfly will be a useful base to build upon for projects like:
 * In-car entertainment or data logging.
-* Interative/installation art.
+* Interactive/installation art.
 * Home automation, perhaps as a lighting controller.
 
 
