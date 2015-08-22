@@ -17,6 +17,12 @@ event_handlers = collections.defaultdict(list)
 # long, but only if they run more frequently than this anyway.
 default_crashpenalty = 5.0
 
+# This is a magic hacky variable that will be set by the module loader
+# in fruitfly.py just before it loads a new copy of each module.
+# We only need to care about this when loading multiple copies of the
+# same module. See fruitfly.py's module loader for a more detailed comment.
+current_modname = None
+
 class repeat:
     """Decorator for repeatedly calling a function in a fruitfly module
     at a regular interval."""
@@ -25,7 +31,7 @@ class repeat:
 
     def __call__(self, func):
         # Add this function to the schedule.
-        heapq.heappush(scheduled_functions[func.__module__], (time.time() + self._interval, (func, self._interval)))
+        heapq.heappush(scheduled_functions[current_modname], (time.time() + self._interval, (func, self._interval)))
 
         def wrapped(*args, **kwargs):
             return func(*args, **kwargs)
@@ -66,7 +72,7 @@ class Module(threading.Thread):
             except Exception as ex:
                 self.logger.error("init crashed: %s (module disabled)", repr(ex))
                 return
-        
+
         self.start()
 
     def _observe_event(self, event, payload):
