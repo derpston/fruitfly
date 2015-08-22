@@ -46,7 +46,7 @@ class event:
 
     def __call__(self, func):
         # Add this function to the event handlers.
-        event_handlers[func.__module__].append((self._spec, func))
+        event_handlers[current_modname].append((self._spec, func))
 
         def wrapped(*args, **kwargs):
             return func(*args, **kwargs)
