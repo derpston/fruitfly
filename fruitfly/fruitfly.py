@@ -6,7 +6,7 @@ import time
 import yaml
 import logging.handlers
 import inspect
-import module
+from . import module
 
 class FruitFly(object):
     def __init__(self, basedir = None, debug = False, logdestination = "stderr"):
@@ -58,7 +58,7 @@ class FruitFly(object):
         for module_config in all_module_config:
             # Use only the first key in this dict. The key is used to specify
             # the module name.
-            modname, modconfig = module_config.items()[0]
+            modname, modconfig = list(module_config.items())[0]
 
             # If this is not the first instance of this module, choose
             # a similar but unique name and use that instead.
