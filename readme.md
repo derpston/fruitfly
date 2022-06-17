@@ -1,4 +1,4 @@
-[![pypi](https://pypip.in/v/fruitfly/badge.svg?style=flat)](https://pypi.python.org/pypi/fruitfly)
+[![pypi](https://img.shields.io/pypi/v/fruitfly.svg?style=flat)](https://pypi.python.org/pypi/fruitfly)
 
 Fruitfly
 ========
