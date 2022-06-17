@@ -15,7 +15,7 @@ class FruitFly(object):
 
         # Load config
         configpath = os.path.join(self._basedir, "fruitfly.yaml")
-        self._config = yaml.load(open(configpath))
+        self._config = yaml.safe_load(open(configpath))
         
 
          # Set up logging
