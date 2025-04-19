@@ -1,6 +1,7 @@
 # stdlib
 import os
-import imp
+import importlib
+import sys
 import glob
 import time
 import yaml
@@ -81,7 +82,10 @@ class FruitFly(object):
 
             # Load a copy of this module.
             try:
-                mod = imp.load_source(modname, modpath)
+                spec = importlib.util.spec_from_file_location(modname, modpath)
+                mod = importlib.util.module_from_spec(spec)
+                sys.modules[modname] = mod
+                spec.loader.exec_module(mod)
             except IOError as ex:
                 self._logger.error("Config specifies module '%s', but failed to load that module. (%s)", modname, repr(ex))
                 continue
