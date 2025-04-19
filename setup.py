@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
       name = 'fruitfly'
-   ,  version = '0.1.4'
+   ,  version = '0.1.5'
    ,  description = 'Modular event-driven framework.'
    ,  long_description = 'Framework for minimalist, modular, event-driven embedded applications. Intended for use on small Linux systems like the Raspberry Pi.'
    ,  author = 'Derp Ston'
